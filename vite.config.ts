@@ -5,7 +5,7 @@ import { createServer } from "./server";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/QUANTARA-FINAL-2026/",
+  base: "/",
   server: {
     host: "::",
     port: 8080,
