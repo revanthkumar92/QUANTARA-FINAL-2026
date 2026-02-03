@@ -31,6 +31,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build:client
+      - name: Add 404.html for SPA support
+        run: cp dist/spa/index.html dist/spa/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
