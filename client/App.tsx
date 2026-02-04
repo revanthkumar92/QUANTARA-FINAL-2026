@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 
 import { LanguageProvider } from "@/context/LanguageContext";
 import { UserProgressProvider } from "@/context/UserProgressContext";
+import { QuantumChatbot } from "@/components/quantum/QuantumChatbot";
 
 // New component for tracking page views
 const AnalyticsTracker = () => {
@@ -51,6 +52,18 @@ const LoginCheck = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+const ChatbotWrapper = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("quantaraUser"));
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("quantaraUser"));
+  }, [location.pathname]);
+
+  if (!isLoggedIn) return null;
+  return <QuantumChatbot />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
@@ -78,9 +91,9 @@ const App = () => (
                 }
               />
               <Route path="/" element={<Navigate to="/login" replace />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <ChatbotWrapper />
           </BrowserRouter>
         </TooltipProvider>
       </UserProgressProvider>

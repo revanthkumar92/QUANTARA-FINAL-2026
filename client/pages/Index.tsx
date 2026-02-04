@@ -17,7 +17,6 @@ import { AdvancedOperations } from "@/components/quantum/AdvancedOperations";
 import { LibraryContent } from "@/components/quantum/LibraryContent";
 import { CommunityContent } from "@/components/quantum/CommunityContent";
 import { OnboardingTour } from "@/components/quantum/OnboardingTour";
-import { QuantumChatbot } from "@/components/quantum/QuantumChatbot";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
 import { useUserProgress } from "@/context/UserProgressContext";
 import {
@@ -233,7 +232,6 @@ export default function Index() {
           </div>
         </Tabs>
         <OnboardingTour />
-        <QuantumChatbot />
       </main>
 
       <footer className="mt-16 border-t border-white/10 bg-black/20 backdrop-blur-xl">

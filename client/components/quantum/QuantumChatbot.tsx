@@ -33,15 +33,24 @@ export function QuantumChatbot() {
     const { t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState("");
-    const [messages, setMessages] = useState<Message[]>([
-        { role: "bot", content: t("chatbot.welcome") }
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
 
+    // Initial welcome message
+    useEffect(() => {
+        if (messages.length === 0) {
+            setMessages([{ role: "bot", content: t("chatbot.welcome") }]);
+        }
+    }, [t, messages.length]);
+
     useEffect(() => {
         if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+            const scrollContainer = scrollRef.current;
+            scrollContainer.scrollTo({
+                top: scrollContainer.scrollHeight,
+                behavior: "smooth"
+            });
         }
     }, [messages, isTyping]);
 
@@ -91,14 +100,14 @@ export function QuantumChatbot() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed inset-0 pointer-events-none z-[9999] flex flex-col items-end justify-end p-6">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-4"
+                        className="mb-4 pointer-events-auto"
                     >
                         <Card className="w-[350px] sm:w-[400px] h-[500px] flex flex-col bg-slate-900/95 border-cyan-500/30 backdrop-blur-xl shadow-2xl shadow-cyan-500/20">
                             <CardHeader className="p-4 border-b border-white/10 bg-gradient-to-r from-cyan-500/10 to-blue-500/10">
@@ -168,7 +177,7 @@ export function QuantumChatbot() {
             <Button
                 onClick={() => setIsOpen(!isOpen)}
                 size="icon"
-                className={`h-14 w-14 rounded-full shadow-lg transition-all duration-300 ${isOpen ? "bg-red-500 hover:bg-red-600" : "bg-gradient-to-r from-cyan-500 to-blue-500 hover:scale-110 shadow-cyan-500/20"}`}
+                className={`h-14 w-14 rounded-full shadow-lg transition-all duration-300 pointer-events-auto ${isOpen ? "bg-red-500 hover:bg-red-600" : "bg-gradient-to-r from-cyan-500 to-blue-500 hover:scale-110 shadow-cyan-500/20"}`}
             >
                 {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-7 w-7" />}
             </Button>
