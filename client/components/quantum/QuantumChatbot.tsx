@@ -14,14 +14,19 @@ interface Message {
 const KNOWLEDGE_BASE: Record<string, string> = {
     "hello": "Hello! I am your Quantum Assistant. I can help you understand quantum concepts like superposition, entanglement, and quantum gates.",
     "qubit": "A qubit (quantum bit) is the basic unit of quantum information. Unlike a classical bit, it can exist in a superposition of states |0⟩ and |1⟩.",
-    "superposition": "Superposition is a fundamental principle of quantum mechanics that allows a physical system, such as an electron, to exist in multiple states simultaneously until it is measured.",
-    "entanglement": "Entanglement is a phenomenon where two or more particles become connected in such a way that the state of one particle instantly influences the state of the other, even across vast distances.",
-    "gate": "Quantum gates are basic quantum circuits operating on a small number of qubits. They are the building blocks of quantum algorithms, analogous to classical logic gates.",
-    "hadamard": "The Hadamard gate (H) creates superposition. It transforms a definite state into a state where 0 and 1 are equally likely.",
-    "bloch sphere": "The Bloch sphere is a geometrical representation of the pure state space of a two-level quantum mechanical system (qubit).",
-    "shor": "Shor's algorithm is a quantum algorithm for integer factorization. It is famous because it could theoretically break most current encryption systems.",
-    "grover": "Grover's algorithm is a quantum algorithm for unstructured search with a quadratic speedup over classical algorithms.",
-    "default": "That's an interesting question! While I'm still learning, I recommend checking out our 'Education' tab for detailed lessons on that topic."
+    "superposition": "Superposition is a fundamental principle of quantum mechanics where a system can exist in multiple states at once until measured.",
+    "entanglement": "Entanglement is a phenomenon where particles become connected such that the state of one instantly influences the other, even at a distance.",
+    "gate": "Quantum gates are the building blocks of quantum circuits, representing unitary transformations on qubits.",
+    "hadamard": "The Hadamard gate (H) creates superposition, transforming |0⟩ into a state where 0 and 1 are equally likely.",
+    "bloch sphere": "The Bloch sphere is a 3D geometrical representation of a qubit's state space.",
+    "shor": "Shor's algorithm efficiently factors large integers, posing a threat to classical RSA encryption.",
+    "grover": "Grover's algorithm provides a quadratic speedup for searching unstructured databases.",
+    "teleportation": "Quantum teleportation is a process by which quantum information can be transmitted from one location to another using entanglement.",
+    "interference": "Quantum interference relates to the probability amplitudes of quantum states combining to reinforce or cancel each other.",
+    "measurement": "Measurement collapses a quantum state from a superposition into one of the basis states (|0⟩ or |1⟩).",
+    "bell": "Bell states are specific highly entangled quantum states of two qubits.",
+    "qiskit": "Qiskit is an open-source SDK for working with quantum computers at the level of circuits, pulses, and algorithms.",
+    "default": "That's an interesting question! I'm currently set to fallback mode. Please ensure the GEMINI_API_KEY is configured in the .env file for full AI capabilities. In the meantime, I recommend checking out our 'Education' tab!"
 };
 
 export function QuantumChatbot() {
@@ -40,29 +45,49 @@ export function QuantumChatbot() {
         }
     }, [messages, isTyping]);
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (!input.trim()) return;
 
         const userMessage = input.trim();
-        setMessages(prev => [...prev, { role: "user", content: userMessage }]);
+        const newMessages: Message[] = [...messages, { role: "user", content: userMessage }];
+        setMessages(newMessages);
         setInput("");
         setIsTyping(true);
 
-        // Simulate AI response
-        setTimeout(() => {
-            const normalizedInput = userMessage.toLowerCase();
-            let response = KNOWLEDGE_BASE.default;
+        try {
+            // Prepare history for Gemini (max 10 messages)
+            const history = messages.slice(-10).map(msg => ({
+                role: msg.role === "user" ? "user" : "model",
+                parts: [{ text: msg.content }]
+            }));
 
-            for (const key in KNOWLEDGE_BASE) {
-                if (normalizedInput.includes(key) && key !== "default") {
-                    response = KNOWLEDGE_BASE[key];
-                    break;
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userMessage, history })
+            });
+
+            if (!response.ok) {
+                // Fallback to local knowledge base if API fails
+                const normalizedInput = userMessage.toLowerCase();
+                let localResponse = KNOWLEDGE_BASE.default;
+                for (const key in KNOWLEDGE_BASE) {
+                    if (normalizedInput.includes(key) && key !== "default") {
+                        localResponse = KNOWLEDGE_BASE[key];
+                        break;
+                    }
                 }
+                setMessages(prev => [...prev, { role: "bot", content: localResponse }]);
+            } else {
+                const data = await response.json();
+                setMessages(prev => [...prev, { role: "bot", content: data.text }]);
             }
-
-            setMessages(prev => [...prev, { role: "bot", content: response }]);
+        } catch (error) {
+            console.error("Chat error:", error);
+            setMessages(prev => [...prev, { role: "bot", content: "I'm having trouble connecting to my quantum core. Please check your internet or try again." }]);
+        } finally {
             setIsTyping(false);
-        }, 1500);
+        }
     };
 
     return (
