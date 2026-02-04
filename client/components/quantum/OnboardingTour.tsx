@@ -50,9 +50,18 @@ export function OnboardingTour() {
     const [currentStep, setCurrentStep] = useState(0);
 
     useEffect(() => {
-        const completed = localStorage.getItem("quantara_onboarding_completed");
+        const userData = localStorage.getItem("quantaraUser");
+        if (!userData) return;
+
+        const user = JSON.parse(userData);
+        const userKey = `quantara_onboarding_completed_${user.name}`;
+
+        const completed = localStorage.getItem(userKey);
         if (!completed) {
-            setOpen(true);
+            const timer = setTimeout(() => {
+                setOpen(true);
+            }, 1000); // 1s delay for content to settle
+            return () => clearTimeout(timer);
         }
     }, []);
 
@@ -69,7 +78,11 @@ export function OnboardingTour() {
     };
 
     const completeTour = () => {
-        localStorage.setItem("quantara_onboarding_completed", "true");
+        const userData = localStorage.getItem("quantaraUser");
+        if (userData) {
+            const user = JSON.parse(userData);
+            localStorage.setItem(`quantara_onboarding_completed_${user.name}`, "true");
+        }
         setOpen(false);
     };
 
