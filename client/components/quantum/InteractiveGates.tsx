@@ -1010,11 +1010,11 @@ measure q -> c;`;
               </div>
 
               {/* Visual Circuit Representation */}
-              <div className="bg-gray-900/50 border border-gray-600 rounded-lg p-4">
+              <div className="bg-gray-900/50 border border-gray-600 rounded-lg p-4 overflow-x-auto scrollbar-hide">
                 <h4 className="text-white font-medium mb-3 text-sm">
                   Circuit Execution Sequence
                 </h4>
-                <div className="space-y-3">
+                <div className="space-y-3 min-w-max pr-4">
                   {Array.from({ length: circuit.numQubits }).map(
                     (_, qubitIndex) => (
                       <div key={qubitIndex} className="flex items-center gap-2">
@@ -1096,17 +1096,19 @@ measure q -> c;`;
                     <h4 className="text-white font-medium mb-3 text-sm">
                       Final Quantum State
                     </h4>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Bloch Sphere for Final State */}
-                      <div className="text-center">
+                      <div className="text-center flex flex-col items-center">
                         <div className="text-sm text-gray-400 mb-2">
                           Bloch Sphere Representation
                         </div>
-                        <BlochSphereVisualization
-                          coordinates={blochCoords}
-                          size={200}
-                          animated={false}
-                        />
+                        <div className="w-full max-w-[250px]">
+                          <BlochSphereVisualization
+                            coordinates={blochCoords}
+                            size={200}
+                            animated={false}
+                          />
+                        </div>
                         <div className="mt-2 text-xs text-gray-400">
                           {currentState.numQubits === 1
                             ? "Single Qubit State"
@@ -1224,11 +1226,10 @@ measure q -> c;`;
                       <Badge
                         key={gate.id}
                         variant="outline"
-                        className={`text-xs ${gateColors[gate.type]} border-none ${
-                          isExecuting && index <= circuit.currentStep
-                            ? "opacity-100"
-                            : "opacity-70"
-                        }`}
+                        className={`text-xs ${gateColors[gate.type]} border-none ${isExecuting && index <= circuit.currentStep
+                          ? "opacity-100"
+                          : "opacity-70"
+                          }`}
                       >
                         {quantumGates[gate.type].name}(q{gate.qubit})
                       </Badge>
@@ -1254,7 +1255,7 @@ measure q -> c;`;
               Real-time probability distribution as circuit evolves
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="overflow-x-auto">
             <div className="space-y-4">
               <div className="h-64 w-full">
                 <ResponsiveContainer width="100%" height="100%">
@@ -1629,8 +1630,8 @@ measure q -> c;`;
                       <span className="text-white">
                         {Math.sqrt(
                           blochCoords.x ** 2 +
-                            blochCoords.y ** 2 +
-                            blochCoords.z ** 2,
+                          blochCoords.y ** 2 +
+                          blochCoords.z ** 2,
                         ).toFixed(3)}
                       </span>
                     </div>
@@ -1643,8 +1644,8 @@ measure q -> c;`;
                       <span className="text-white">
                         {Math.sqrt(
                           blochCoords.x ** 2 +
-                            blochCoords.y ** 2 +
-                            blochCoords.z ** 2,
+                          blochCoords.y ** 2 +
+                          blochCoords.z ** 2,
                         ).toFixed(3)}
                       </span>
                     </div>

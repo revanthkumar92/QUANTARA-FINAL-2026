@@ -197,7 +197,7 @@ export function QuantumVisualizer() {
   return (
     <div className="space-y-6">
       {/* Main Visualization Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* 3D Bloch Sphere Visualization */}
         <Card className="bg-black/40 border-cyan-500/30">
           <CardHeader>
@@ -213,7 +213,6 @@ export function QuantumVisualizer() {
             <div className="space-y-4">
               <BlochSphereVisualization
                 coordinates={blochCoords}
-                size={400}
                 animated={isAnimating}
               />
 
@@ -319,7 +318,7 @@ export function QuantumVisualizer() {
       </div>
 
       {/* Controls and History */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {/* Quantum Gates */}
         <Card className="bg-black/40 border-blue-500/30">
           <CardHeader>
@@ -475,8 +474,8 @@ export function QuantumVisualizer() {
                         }}
                         disabled={isPlaying}
                         className={`w-6 h-6 rounded text-xs transition-colors timeline-btn ${currentStep === index
-                            ? "bg-yellow-500 text-black"
-                            : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                          ? "bg-yellow-500 text-black"
+                          : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                           }`}
                       >
                         {index + 1}

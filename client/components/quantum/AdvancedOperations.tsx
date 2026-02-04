@@ -719,7 +719,7 @@ ${reportData.recommendations.map((rec) => `- ${rec}`).join("\n")}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {/* Algorithm Selection */}
             <div className="space-y-4">
               <div className="space-y-2">
@@ -881,7 +881,7 @@ ${reportData.recommendations.map((rec) => `- ${rec}`).join("\n")}
       </Card>
 
       {/* Performance Analytics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Fidelity Evolution */}
         <Card className="bg-black/40 border-cyan-500/30">
           <CardHeader>
@@ -1006,7 +1006,7 @@ ${reportData.recommendations.map((rec) => `- ${rec}`).join("\n")}
 
       {/* Advanced Visualizations */}
       {showAdvancedVisualizations && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {/* Noise Model Visualization */}
           <Card className="bg-black/40 border-red-500/30">
             <CardHeader>
@@ -1236,12 +1236,14 @@ ${reportData.recommendations.map((rec) => `- ${rec}`).join("\n")}
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="errors" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-gray-800/50">
-              <TabsTrigger value="errors">Error Types</TabsTrigger>
-              <TabsTrigger value="mitigation">Error Mitigation</TabsTrigger>
-              <TabsTrigger value="benchmarks">Benchmarks</TabsTrigger>
-              <TabsTrigger value="visualization">Error Viz</TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-auto pb-2 -mx-1 px-1">
+              <TabsList className="flex w-full min-w-max md:grid md:grid-cols-4 bg-gray-800/50">
+                <TabsTrigger value="errors" className="flex-1 px-4">Error Types</TabsTrigger>
+                <TabsTrigger value="mitigation" className="flex-1 px-4">Error Mitigation</TabsTrigger>
+                <TabsTrigger value="benchmarks" className="flex-1 px-4">Benchmarks</TabsTrigger>
+                <TabsTrigger value="visualization" className="flex-1 px-4">Error Viz</TabsTrigger>
+              </TabsList>
+            </div>
 
             <TabsContent value="errors" className="mt-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -1506,7 +1508,7 @@ ${reportData.recommendations.map((rec) => `- ${rec}`).join("\n")}
             </TabsContent>
 
             <TabsContent value="visualization" className="mt-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-800/30 p-4 rounded-lg">
                   <h4 className="text-white font-semibold mb-3">
                     Error Impact on Bloch Sphere

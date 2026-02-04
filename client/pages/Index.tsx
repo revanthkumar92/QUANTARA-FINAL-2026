@@ -25,7 +25,15 @@ import {
   ExternalLink,
   LogOut,
   Library,
+  Menu,
 } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { useLanguage } from "@/context/LanguageContext";
 import { logAction } from "@/lib/firebase";
 
@@ -73,50 +81,112 @@ export default function Index() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <LanguageSelector />
-              {userName && (
-                <span className="text-white text-sm">
-                  {t("header.welcome")}<span className="font-semibold text-cyan-400">{userName}</span>
-                </span>
-              )}
-              <Badge
-                variant="outline"
-                className="border-cyan-400 text-cyan-400"
-              >
-                APSCHE-2025
-              </Badge>
-              <Button
-                asChild
-                variant="ghost"
-                size="sm"
-                className="text-white hover:bg-white/10"
-              >
-                <a
-                  href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="flex items-center gap-2">
+              <div className="hidden md:flex items-center gap-4">
+                <LanguageSelector />
+                {userName && (
+                  <span className="text-white text-sm">
+                    {t("header.welcome")}<span className="font-semibold text-cyan-400">{userName}</span>
+                  </span>
+                )}
+                <Badge
+                  variant="outline"
+                  className="border-cyan-400 text-cyan-400"
                 >
-                  <Github className="h-4 w-4 mr-2" />
-                  {t("header.viewCode")}
-                </a>
-              </Button>
-              <Button
-                onClick={handleLogout}
-                variant="ghost"
-                size="sm"
-                className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                {t("header.logout")}
-              </Button>
+                  APSCHE-2025
+                </Badge>
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:bg-white/10"
+                >
+                  <a
+                    href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="h-4 w-4 mr-2" />
+                    {t("header.viewCode")}
+                  </a>
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  variant="ghost"
+                  size="sm"
+                  className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  {t("header.logout")}
+                </Button>
+              </div>
+
+              {/* Mobile Menu */}
+              <div className="md:hidden flex items-center gap-2">
+                <LanguageSelector />
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon" className="text-white">
+                      <Menu className="h-6 w-6" />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="right" className="bg-slate-950/95 border-white/10 text-white">
+                    <SheetHeader className="text-left">
+                      <SheetTitle className="text-cyan-400 flex items-center gap-2">
+                        <Atom className="h-5 w-5" />
+                        Quantara
+                      </SheetTitle>
+                    </SheetHeader>
+                    <div className="flex flex-col gap-6 mt-8">
+                      {userName && (
+                        <div className="px-2 py-1">
+                          <p className="text-sm text-gray-400">{t("header.welcome")}</p>
+                          <p className="font-semibold text-cyan-400 text-lg">{userName}</p>
+                        </div>
+                      )}
+                      <nav className="flex flex-col gap-4">
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="justify-start border-white/10 hover:bg-white/10"
+                        >
+                          <a
+                            href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Github className="h-4 w-4 mr-3" />
+                            {t("header.viewCode")}
+                          </a>
+                        </Button>
+                        <Button
+                          onClick={handleLogout}
+                          variant="outline"
+                          className="justify-start border-red-500/20 text-red-400 hover:bg-red-500/10 hover:text-red-300"
+                        >
+                          <LogOut className="h-4 w-4 mr-3" />
+                          {t("header.logout")}
+                        </Button>
+                      </nav>
+                      <div className="mt-auto">
+                        <Badge
+                          variant="outline"
+                          className="border-cyan-400/50 text-cyan-400/70"
+                        >
+                          APSCHE-2025
+                        </Badge>
+                      </div>
+                    </div>
+                  </SheetContent>
+                </Sheet>
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
+      <main className="container mx-auto px-4 sm:px-6 py-8">
         <div className="mb-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-4">
             {t("hero.title")}
@@ -127,48 +197,45 @@ export default function Index() {
         </div>
 
         <Tabs defaultValue="visualizer" className="w-full" onValueChange={handleTabChange}>
-          <TabsList className="grid w-full grid-cols-5 bg-black/30 border border-white/10">
-            <TabsTrigger
-              value="visualizer"
-              className="flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400"
-            >
-              <Zap className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("tabs.visualizer")}</span>
-              <span className="sm:hidden">Visualize</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="gates"
-              className="flex items-center gap-2 data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400"
-            >
-              <Atom className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("tabs.gates")}</span>
-              <span className="sm:hidden">Gates</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="education"
-              className="flex items-center gap-2 data-[state=active]:bg-green-500/20 data-[state=active]:text-green-400"
-            >
-              <BookOpen className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("tabs.education")}</span>
-              <span className="sm:hidden">Learn</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="library"
-              className="flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400"
-            >
-              <Library className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("tabs.library")}</span>
-              <span className="sm:hidden">Lib</span>
-            </TabsTrigger>
-            <TabsTrigger
-              value="advanced"
-              className="flex items-center gap-2 data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400"
-            >
-              <Settings className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("tabs.advanced")}</span>
-              <span className="sm:hidden">Advanced</span>
-            </TabsTrigger>
-          </TabsList>
+          <div className="overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
+            <TabsList className="flex w-full min-w-max md:grid md:grid-cols-5 bg-black/30 border border-white/10">
+              <TabsTrigger
+                value="visualizer"
+                className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4"
+              >
+                <Zap className="h-4 w-4" />
+                <span className="inline">{t("tabs.visualizer")}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="gates"
+                className="flex-1 flex items-center gap-2 data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 px-4"
+              >
+                <Atom className="h-4 w-4" />
+                <span className="inline">{t("tabs.gates")}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="education"
+                className="flex-1 flex items-center gap-2 data-[state=active]:bg-green-500/20 data-[state=active]:text-green-400 px-4"
+              >
+                <BookOpen className="h-4 w-4" />
+                <span className="inline">{t("tabs.education")}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="library"
+                className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4"
+              >
+                <Library className="h-4 w-4" />
+                <span className="inline">{t("tabs.library")}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="advanced"
+                className="flex-1 flex items-center gap-2 data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400 px-4"
+              >
+                <Settings className="h-4 w-4" />
+                <span className="inline">{t("tabs.advanced")}</span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <div className="mt-6">
             <TabsContent value="visualizer" className="space-y-6">

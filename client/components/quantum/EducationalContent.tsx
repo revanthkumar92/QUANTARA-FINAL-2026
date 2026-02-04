@@ -291,7 +291,7 @@ export function EducationalContent() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {/* Lesson List */}
         <Card className="bg-black/40 border-blue-500/30">
           <CardHeader>
@@ -307,8 +307,8 @@ export function EducationalContent() {
                   key={lesson.id}
                   onClick={() => setActiveLesson(lesson.id)}
                   className={`p-3 rounded-lg cursor-pointer transition-colors ${activeLesson === lesson.id
-                      ? "bg-blue-600/20 border border-blue-500/50"
-                      : "bg-gray-800/50 hover:bg-gray-700/50"
+                    ? "bg-blue-600/20 border border-blue-500/50"
+                    : "bg-gray-800/50 hover:bg-gray-700/50"
                     }`}
                 >
                   <div className="flex items-center justify-between mb-2">
@@ -327,10 +327,10 @@ export function EducationalContent() {
                     <Badge
                       variant="outline"
                       className={`text-xs ${lesson.difficulty === "Beginner"
-                          ? "border-green-500 text-green-400"
-                          : lesson.difficulty === "Intermediate"
-                            ? "border-yellow-500 text-yellow-400"
-                            : "border-red-500 text-red-400"
+                        ? "border-green-500 text-green-400"
+                        : lesson.difficulty === "Intermediate"
+                          ? "border-yellow-500 text-yellow-400"
+                          : "border-red-500 text-red-400"
                         }`}
                     >
                       {lesson.difficulty}
@@ -362,7 +362,7 @@ export function EducationalContent() {
         </Card>
 
         {/* Lesson Content */}
-        <div className="lg:col-span-3">
+        <div className="md:col-span-2 lg:col-span-3">
           <Card className="bg-black/40 border-purple-500/30">
             <CardHeader>
               <CardTitle className="text-white">
@@ -374,12 +374,14 @@ export function EducationalContent() {
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="content" className="w-full">
-                <TabsList className="grid w-full grid-cols-4 bg-gray-800/50">
-                  <TabsTrigger value="content">{t("education.tab.theory")}</TabsTrigger>
-                  <TabsTrigger value="interactive">{t("education.tab.interactive")}</TabsTrigger>
-                  <TabsTrigger value="visualization">{t("education.tab.visualization")}</TabsTrigger>
-                  <TabsTrigger value="quiz">{t("education.tab.quiz")}</TabsTrigger>
-                </TabsList>
+                <div className="overflow-x-auto pb-2 -mx-1 px-1">
+                  <TabsList className="flex w-full min-w-max md:grid md:grid-cols-4 bg-gray-800/50">
+                    <TabsTrigger value="content" className="flex-1 px-4">{t("education.tab.theory")}</TabsTrigger>
+                    <TabsTrigger value="interactive" className="flex-1 px-4">{t("education.tab.interactive")}</TabsTrigger>
+                    <TabsTrigger value="visualization" className="flex-1 px-4">{t("education.tab.visualization")}</TabsTrigger>
+                    <TabsTrigger value="quiz" className="flex-1 px-4">{t("education.tab.quiz")}</TabsTrigger>
+                  </TabsList>
+                </div>
 
                 <TabsContent value="content" className="mt-6">
                   <div className="space-y-6">

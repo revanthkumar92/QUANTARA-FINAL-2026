@@ -194,14 +194,15 @@ function BlochSphereError() {
 // Main Bloch Sphere Component
 export function BlochSphereVisualization({
   coordinates,
-  size = 300,
+  size, // Optional fixed size
   showLabels = true,
   animated = false,
 }: BlochSphereProps & { size?: number }) {
   return (
     <div
-      className="w-full rounded-lg overflow-hidden bg-gradient-to-br from-slate-900/50 to-blue-900/30"
-      style={{ height: `${size}px` }}
+      className={`w-full rounded-lg overflow-hidden bg-gradient-to-br from-slate-900/50 to-blue-900/30 ${size ? "" : "h-[300px] sm:h-[350px] md:h-[400px]"
+        }`}
+      style={size ? { height: `${size}px` } : {}}
     >
       <Suspense fallback={<BlochSphereLoading />}>
         <Canvas
