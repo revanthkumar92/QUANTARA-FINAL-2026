@@ -184,7 +184,15 @@ export type TranslationKey =
     | "onboarding.community.desc"
     | "onboarding.btn.next"
     | "onboarding.btn.skip"
-    | "onboarding.btn.finish";
+    | "onboarding.btn.finish"
+    | "dashboard.continue"
+    | "dashboard.recommended"
+    | "dashboard.resume"
+    | "dashboard.nextUp"
+    | "chatbot.title"
+    | "chatbot.placeholder"
+    | "chatbot.send"
+    | "chatbot.welcome";
 
 export const translations: Record<string, Record<TranslationKey, string>> = {
     en: {
@@ -372,7 +380,15 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "onboarding.community.desc": "Connect with others and grow together in the quantum ecosystem.",
         "onboarding.btn.next": "Next",
         "onboarding.btn.skip": "Skip Tour",
-        "onboarding.btn.finish": "Get Started",
+        "onboarding.btn.finish": "Start Now",
+        "dashboard.continue": "Continue Learning",
+        "dashboard.recommended": "Recommended for You",
+        "dashboard.resume": "Resume Lesson",
+        "dashboard.nextUp": "Next Step in your Journey",
+        "chatbot.title": "Quantum Assistant",
+        "chatbot.placeholder": "Ask anything about quantum...",
+        "chatbot.send": "Send",
+        "chatbot.welcome": "Hello! I'm your Quantum Assistant. How can I help you today?",
         "advanced.algo.applications": "Applications",
     },
     hi: {
@@ -561,6 +577,14 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "onboarding.btn.next": "अगला",
         "onboarding.btn.skip": "टूर छोड़ें",
         "onboarding.btn.finish": "शुरू करें",
+        "dashboard.continue": "सीखना जारी रखें",
+        "dashboard.recommended": "आपके लिए अनुशंसित",
+        "dashboard.resume": "पाठ फिर से शुरू करें",
+        "dashboard.nextUp": "आपकी यात्रा में अगला कदम",
+        "chatbot.title": "क्वांटम सहायक",
+        "chatbot.placeholder": "क्वांटम के बारे में कुछ भी पूछें...",
+        "chatbot.send": "भेजें",
+        "chatbot.welcome": "नमस्ते! मैं आपका क्वांटम सहायक हूँ। आज मैं आपकी क्या मदद कर सकता हूँ?",
         "advanced.algo.applications": "अनुप्रयोग",
     },
     te: {
@@ -749,6 +773,14 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "onboarding.btn.next": "తదుపరి",
         "onboarding.btn.skip": "టూర్ స్కిప్ చేయండి",
         "onboarding.btn.finish": "ప్రారంభించండి",
+        "dashboard.continue": "నేర్చుకోవడం కొనసాగించండి",
+        "dashboard.recommended": "మీ కోసం సిఫార్సు చేయబడినవి",
+        "dashboard.resume": "పాఠాన్ని తిరిగి ప్రారంభించండి",
+        "dashboard.nextUp": "మీ ప్రయాణంలో తదుపరి దశ",
+        "chatbot.title": "క్వాంటం అసిస్టెంట్",
+        "chatbot.placeholder": "క్వాంటం గురించి ఏదైనా అడగండి...",
+        "chatbot.send": "పంపు",
+        "chatbot.welcome": "హలో! నేను మీ క్వాంటం అసిస్టెంట్. ఈ రోజు నేను మీకు ఎలా సహాయపడగలను?",
         "advanced.algo.applications": "అనువర్తనాలు",
     },
     ta: {
@@ -936,6 +968,14 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "onboarding.btn.next": "அடுத்து",
         "onboarding.btn.skip": "தவிர்க்க",
         "onboarding.btn.finish": "தொடங்கவும்",
+        "dashboard.continue": "கற்றலைத் தொடரவும்",
+        "dashboard.recommended": "உங்களுக்காக பரிந்துரைக்கப்படுகிறது",
+        "dashboard.resume": "பாடத்தைத் தொடரவும்",
+        "dashboard.nextUp": "உங்கள் பயணத்தின் அடுத்த படி",
+        "chatbot.title": "குவாண்டம் உதவியாளர்",
+        "chatbot.placeholder": "குவாண்டம் பற்றி எதையும் கேளுங்கள்...",
+        "chatbot.send": "அனுப்பு",
+        "chatbot.welcome": "வணக்கம்! நான் உங்கள் குவாண்டம் உதவியாளர். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்?",
         "advanced.controls.show": "காட்சிப்படுத்தல்களைக் காண்பி",
         "advanced.controls.hide": "காட்சிப்படுத்தல்களை மறை",
     },
@@ -1123,6 +1163,14 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "onboarding.btn.next": "ಮುಂದೆ",
         "onboarding.btn.skip": "ಬಿಟ್ಟುಬಿಡಿ",
         "onboarding.btn.finish": "ಪ್ರಾರಂಭಿಸಿ",
+        "dashboard.continue": "ಕಲಿಕೆಯನ್ನು ಮುಂದುವರಿಸಿ",
+        "dashboard.recommended": "ನಿಮಗಾಗಿ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ",
+        "dashboard.resume": "ಪಾಠವನ್ನು ಪುನರಾರಂಭಿಸಿ",
+        "dashboard.nextUp": "ನಿಮ್ಮ ಪಯಣದಲ್ಲಿ ಮುಂದಿನ ಹಂತ",
+        "chatbot.title": "ಕ್ವಾಂಟಮ್ ಸಹಾಯಕ",
+        "chatbot.placeholder": "ಕ್ವಾಂಟಮ್ ಬಗ್ಗೆ ಏನನ್ನಾದರೂ ಕೇಳಿ...",
+        "chatbot.send": "ಕಳುಹಿಸಿ",
+        "chatbot.welcome": "ಹಲೋ! ನಾನು ನಿಮ್ಮ ಕ್ವಾಂಟಮ್ ಸಹಾಯಕ. ಇಂದು ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
         "library.title": "ಕ್ವಾಂಟಮ್ ಗ್ರಂಥಾಲಯ",
         "library.desc": "ಕ್ವಾಂಟಮ್ ಕಂಪ್ಯೂಟಿಂಗ್ ಮತ್ತು ಭೌತಶಾಸ್ತ್ರದ ಬಗೆಗಿನ ಅಗತ್ಯ ಓದುವ ಸಾಮಗ್ರಿಗಳು ಮತ್ತು ಪುಸ್ತಕಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
         "library.viewBook": "ಪುಸ್ತಕವನ್ನು ನೋಡಿ"

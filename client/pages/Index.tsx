@@ -17,7 +17,9 @@ import { AdvancedOperations } from "@/components/quantum/AdvancedOperations";
 import { LibraryContent } from "@/components/quantum/LibraryContent";
 import { CommunityContent } from "@/components/quantum/CommunityContent";
 import { OnboardingTour } from "@/components/quantum/OnboardingTour";
+import { QuantumChatbot } from "@/components/quantum/QuantumChatbot";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
+import { useUserProgress } from "@/context/UserProgressContext";
 import {
   Atom,
   Zap,
@@ -29,6 +31,7 @@ import {
   Library,
   Menu,
   Users,
+  Play,
 } from "lucide-react";
 import {
   Sheet,
@@ -43,15 +46,14 @@ import { logAction } from "@/lib/firebase";
 export default function Index() {
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const { progress } = useUserProgress();
   const [userName, setUserName] = useState("");
 
   const handleTabChange = (value: string) => {
     logAction(`tab_switched_${value}`);
   };
 
-
   useEffect(() => {
-    // Get user data from localStorage
     const userData = localStorage.getItem("quantaraUser");
     if (userData) {
       const user = JSON.parse(userData);
@@ -66,7 +68,6 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
-      {/* Header */}
       <header className="border-b border-white/10 bg-black/20 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -79,9 +80,7 @@ export default function Index() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-white">{t("app.title")}</h1>
-                <p className="text-sm text-cyan-400">
-                  {t("app.subtitle")}
-                </p>
+                <p className="text-sm text-cyan-400">{t("app.subtitle")}</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -92,52 +91,28 @@ export default function Index() {
                     {t("header.welcome")}<span className="font-semibold text-cyan-400">{userName}</span>
                   </span>
                 )}
-                <Badge
-                  variant="outline"
-                  className="border-cyan-400 text-cyan-400"
-                >
-                  APSCHE-2025
-                </Badge>
-                <Button
-                  asChild
-                  variant="ghost"
-                  size="sm"
-                  className="text-white hover:bg-white/10"
-                >
-                  <a
-                    href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                <Badge variant="outline" className="border-cyan-400 text-cyan-400">APSCHE-2025</Badge>
+                <Button asChild variant="ghost" size="sm" className="text-white hover:bg-white/10">
+                  <a href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026" target="_blank" rel="noopener noreferrer">
                     <Github className="h-4 w-4 mr-2" />
                     {t("header.viewCode")}
                   </a>
                 </Button>
-                <Button
-                  onClick={handleLogout}
-                  variant="ghost"
-                  size="sm"
-                  className="text-red-400 hover:bg-red-500/10 hover:text-red-300"
-                >
+                <Button onClick={handleLogout} variant="ghost" size="sm" className="text-red-400 hover:bg-red-500/10 hover:text-red-300">
                   <LogOut className="h-4 w-4 mr-2" />
                   {t("header.logout")}
                 </Button>
               </div>
-
-              {/* Mobile Menu */}
               <div className="md:hidden flex items-center gap-2">
                 <LanguageSelector />
                 <Sheet>
                   <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon" className="text-white">
-                      <Menu className="h-6 w-6" />
-                    </Button>
+                    <Button variant="ghost" size="icon" className="text-white"><Menu className="h-6 w-6" /></Button>
                   </SheetTrigger>
                   <SheetContent side="right" className="bg-slate-950/95 border-white/10 text-white">
                     <SheetHeader className="text-left">
                       <SheetTitle className="text-cyan-400 flex items-center gap-2">
-                        <Atom className="h-5 w-5" />
-                        Quantara
+                        <Atom className="h-5 w-5" /> Quantara
                       </SheetTitle>
                     </SheetHeader>
                     <div className="flex flex-col gap-6 mt-8">
@@ -148,36 +123,17 @@ export default function Index() {
                         </div>
                       )}
                       <nav className="flex flex-col gap-4">
-                        <Button
-                          asChild
-                          variant="outline"
-                          className="justify-start border-white/10 hover:bg-white/10"
-                        >
-                          <a
-                            href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github className="h-4 w-4 mr-3" />
-                            {t("header.viewCode")}
+                        <Button asChild variant="outline" className="justify-start border-white/10 hover:bg-white/10">
+                          <a href="https://github.com/revanthkumar92/QUANTARA-FINAL-2026" target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-3" /> {t("header.viewCode")}
                           </a>
                         </Button>
-                        <Button
-                          onClick={handleLogout}
-                          variant="outline"
-                          className="justify-start border-red-500/20 text-red-400 hover:bg-red-500/10 hover:text-red-300"
-                        >
-                          <LogOut className="h-4 w-4 mr-3" />
-                          {t("header.logout")}
+                        <Button onClick={handleLogout} variant="outline" className="justify-start border-red-500/20 text-red-400 hover:bg-red-500/10 hover:text-red-300">
+                          <LogOut className="h-4 w-4 mr-3" /> {t("header.logout")}
                         </Button>
                       </nav>
                       <div className="mt-auto">
-                        <Badge
-                          variant="outline"
-                          className="border-cyan-400/50 text-cyan-400/70"
-                        >
-                          APSCHE-2025
-                        </Badge>
+                        <Badge variant="outline" className="border-cyan-400/50 text-cyan-400/70">APSCHE-2025</Badge>
                       </div>
                     </div>
                   </SheetContent>
@@ -188,95 +144,98 @@ export default function Index() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 py-8">
         <div className="mb-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            {t("hero.title")}
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            {t("hero.subtitle")}
-          </p>
+          <h2 className="text-4xl font-bold text-white mb-4">{t("hero.title")}</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">{t("hero.subtitle")}</p>
         </div>
+
+        {/* Continue Learning & Recommendations */}
+        {(progress.lastLessonId || Object.keys(progress.lessons).length > 0) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <Card className="bg-slate-900/40 border-cyan-500/30 backdrop-blur-sm shadow-xl hover:shadow-cyan-500/10 transition-all">
+              <CardHeader className="p-4">
+                <CardTitle className="text-lg text-white flex items-center gap-2">
+                  <Play className="h-4 w-4 text-cyan-400" />
+                  {t("dashboard.continue")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 pt-0">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400 mb-1">{t("dashboard.nextUp")}</p>
+                    <p className="text-white font-semibold">
+                      {progress.lastLessonId
+                        ? t(`education.lesson.${progress.lastLessonId}.title` as any)
+                        : t("education.lesson.basics.title")}
+                    </p>
+                  </div>
+                  <Button variant="outline" size="sm" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white transition-colors">
+                    {t("dashboard.resume")}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900/40 border-purple-500/30 backdrop-blur-sm shadow-xl hover:shadow-purple-500/10 transition-all">
+              <CardHeader className="p-4">
+                <CardTitle className="text-lg text-white flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-purple-400" />
+                  {t("dashboard.recommended")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 pt-0">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                    <Atom className="h-5 w-5 text-purple-400" />
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-medium">Shor's Algorithm Deep Dive</p>
+                    <p className="text-xs text-gray-500 italic">Boost your quantum understanding</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         <Tabs defaultValue="visualizer" className="w-full" onValueChange={handleTabChange}>
           <div className="overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
             <TabsList className="flex w-full min-w-max md:grid md:grid-cols-6 bg-black/30 border border-white/10">
-              <TabsTrigger
-                value="visualizer"
-                className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4"
-              >
-                <Zap className="h-4 w-4" />
-                <span className="inline">{t("tabs.visualizer")}</span>
+              <TabsTrigger value="visualizer" className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4">
+                <Zap className="h-4 w-4" /> <span className="inline">{t("tabs.visualizer")}</span>
               </TabsTrigger>
-              <TabsTrigger
-                value="gates"
-                className="flex-1 flex items-center gap-2 data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 px-4"
-              >
-                <Atom className="h-4 w-4" />
-                <span className="inline">{t("tabs.gates")}</span>
+              <TabsTrigger value="gates" className="flex-1 flex items-center gap-2 data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 px-4">
+                <Atom className="h-4 w-4" /> <span className="inline">{t("tabs.gates")}</span>
               </TabsTrigger>
-              <TabsTrigger
-                value="education"
-                className="flex-1 flex items-center gap-2 data-[state=active]:bg-green-500/20 data-[state=active]:text-green-400 px-4"
-              >
-                <BookOpen className="h-4 w-4" />
-                <span className="inline">{t("tabs.education")}</span>
+              <TabsTrigger value="education" className="flex-1 flex items-center gap-2 data-[state=active]:bg-green-500/20 data-[state=active]:text-green-400 px-4">
+                <BookOpen className="h-4 w-4" /> <span className="inline">{t("tabs.education")}</span>
               </TabsTrigger>
-              <TabsTrigger
-                value="library"
-                className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4"
-              >
-                <Library className="h-4 w-4" />
-                <span className="inline">{t("tabs.library")}</span>
+              <TabsTrigger value="library" className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4">
+                <Library className="h-4 w-4" /> <span className="inline">{t("tabs.library")}</span>
               </TabsTrigger>
-              <TabsTrigger
-                value="community"
-                className="flex-1 flex items-center gap-2 data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-400 px-4"
-              >
-                <Users className="h-4 w-4" />
-                <span className="inline">{t("tabs.community")}</span>
+              <TabsTrigger value="community" className="flex-1 flex items-center gap-2 data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-400 px-4">
+                <Users className="h-4 w-4" /> <span className="inline">{t("tabs.community")}</span>
               </TabsTrigger>
-              <TabsTrigger
-                value="advanced"
-                className="flex-1 flex items-center gap-2 data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400 px-4"
-              >
-                <Settings className="h-4 w-4" />
-                <span className="inline">{t("tabs.advanced")}</span>
+              <TabsTrigger value="advanced" className="flex-1 flex items-center gap-2 data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-400 px-4">
+                <Settings className="h-4 w-4" /> <span className="inline">{t("tabs.advanced")}</span>
               </TabsTrigger>
             </TabsList>
           </div>
 
           <div className="mt-6">
-            <TabsContent value="visualizer" className="space-y-6">
-              <QuantumVisualizer />
-            </TabsContent>
-
-            <TabsContent value="gates" className="space-y-6">
-              <InteractiveGates />
-            </TabsContent>
-
-            <TabsContent value="education" className="space-y-6">
-              <EducationalContent />
-            </TabsContent>
-
-            <TabsContent value="library" className="space-y-6">
-              <LibraryContent />
-            </TabsContent>
-
-            <TabsContent value="advanced" className="space-y-6">
-              <AdvancedOperations />
-            </TabsContent>
-
-            <TabsContent value="community" className="space-y-6">
-              <CommunityContent />
-            </TabsContent>
+            <TabsContent value="visualizer" className="space-y-6"><QuantumVisualizer /></TabsContent>
+            <TabsContent value="gates" className="space-y-6"><InteractiveGates /></TabsContent>
+            <TabsContent value="education" className="space-y-6"><EducationalContent /></TabsContent>
+            <TabsContent value="library" className="space-y-6"><LibraryContent /></TabsContent>
+            <TabsContent value="advanced" className="space-y-6"><AdvancedOperations /></TabsContent>
+            <TabsContent value="community" className="space-y-6"><CommunityContent /></TabsContent>
           </div>
         </Tabs>
         <OnboardingTour />
+        <QuantumChatbot />
       </main>
 
-      {/* Footer */}
       <footer className="mt-16 border-t border-white/10 bg-black/20 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -285,27 +244,12 @@ export default function Index() {
               <span>{t("footer.rights")}</span>
             </div>
             <div className="flex items-center gap-4">
-              <Button
-                asChild
-                variant="ghost"
-                size="sm"
-                className="text-gray-400 hover:text-white"
-              >
-                <a
-                  href="https://quantum-computing.ibm.com/composer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  {t("footer.ibm")}
+              <Button asChild variant="ghost" size="sm" className="text-gray-400 hover:text-white">
+                <a href="https://quantum-computing.ibm.com/composer" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4 mr-2" /> {t("footer.ibm")}
                 </a>
               </Button>
-              <Badge
-                variant="outline"
-                className="border-cyan-400 text-cyan-400"
-              >
-                Built for APSCHE-2025
-              </Badge>
+              <Badge variant="outline" className="border-cyan-400 text-cyan-400">Built for APSCHE-2025</Badge>
             </div>
           </div>
         </div>
