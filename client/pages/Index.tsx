@@ -86,9 +86,15 @@ export default function Index() {
               <div className="hidden md:flex items-center gap-4">
                 <LanguageSelector />
                 {userName && (
-                  <span className="text-white text-sm">
-                    {t("header.welcome")}<span className="font-semibold text-cyan-400">{userName}</span>
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <span className="text-white text-sm">
+                      {t("header.welcome")}<span className="font-semibold text-cyan-400">{userName}</span>
+                    </span>
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full animate-pulse transition-all hover:scale-105" title="Daily Streak">
+                      <Zap className="h-4 w-4 text-orange-400 fill-orange-400" />
+                      <span className="text-orange-400 font-bold text-sm tracking-tight">{progress.streak}</span>
+                    </div>
+                  </div>
                 )}
                 <Badge variant="outline" className="border-cyan-400 text-cyan-400">APSCHE-2025</Badge>
                 <Button asChild variant="ghost" size="sm" className="text-white hover:bg-white/10">
@@ -116,9 +122,15 @@ export default function Index() {
                     </SheetHeader>
                     <div className="flex flex-col gap-6 mt-8">
                       {userName && (
-                        <div className="px-2 py-1">
-                          <p className="text-sm text-gray-400">{t("header.welcome")}</p>
-                          <p className="font-semibold text-cyan-400 text-lg">{userName}</p>
+                        <div className="px-2 py-1 flex items-center justify-between">
+                          <div>
+                            <p className="text-sm text-gray-400">{t("header.welcome")}</p>
+                            <p className="font-semibold text-cyan-400 text-lg">{userName}</p>
+                          </div>
+                          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full">
+                            <Zap className="h-4 w-4 text-orange-400 fill-orange-400" />
+                            <span className="text-orange-400 font-bold">{progress.streak}</span>
+                          </div>
                         </div>
                       )}
                       <nav className="flex flex-col gap-4">

@@ -11,6 +11,8 @@ interface UserProgress {
     lessons: Record<string, LessonStats>;
     lastLessonId: string | null;
     totalTime: number;
+    streak: number;
+    lastStreakUpdate: string | null;
 }
 
 interface UserProgressContextType {
@@ -29,6 +31,8 @@ const initialProgress: UserProgress = {
     lessons: {},
     lastLessonId: null,
     totalTime: 0,
+    streak: 0,
+    lastStreakUpdate: null,
 };
 
 export const UserProgressProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -40,6 +44,53 @@ export const UserProgressProvider: React.FC<{ children: React.ReactNode }> = ({ 
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }, [progress]);
+
+    // Daily Streak Logic
+    useEffect(() => {
+        const checkStreak = () => {
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+            setProgress(prev => {
+                let lastUpdateValue = prev.lastStreakUpdate;
+                if (!lastUpdateValue) {
+                    // First time user
+                    return {
+                        ...prev,
+                        streak: 1,
+                        lastStreakUpdate: new Date(today).toISOString()
+                    };
+                }
+
+                const lastDateObj = new Date(lastUpdateValue);
+                const lastUpdate = new Date(lastDateObj.getFullYear(), lastDateObj.getMonth(), lastDateObj.getDate()).getTime();
+
+                const msInDay = 24 * 60 * 60 * 1000;
+                const diff = today - lastUpdate;
+
+                if (diff === msInDay) {
+                    // Consecutive day
+                    return {
+                        ...prev,
+                        streak: prev.streak + 1,
+                        lastStreakUpdate: new Date(today).toISOString()
+                    };
+                } else if (diff > msInDay) {
+                    // Streak broken
+                    return {
+                        ...prev,
+                        streak: 1,
+                        lastStreakUpdate: new Date(today).toISOString()
+                    };
+                }
+
+                // Same day, no change
+                return prev;
+            });
+        };
+
+        checkStreak();
+    }, []);
 
     const markComplete = (lessonId: string, score?: number) => {
         setProgress((prev) => {
