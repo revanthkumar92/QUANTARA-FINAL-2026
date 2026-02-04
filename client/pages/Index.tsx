@@ -15,6 +15,8 @@ import { InteractiveGates } from "@/components/quantum/InteractiveGates";
 import { EducationalContent } from "@/components/quantum/EducationalContent";
 import { AdvancedOperations } from "@/components/quantum/AdvancedOperations";
 import { LibraryContent } from "@/components/quantum/LibraryContent";
+import { CommunityContent } from "@/components/quantum/CommunityContent";
+import { OnboardingTour } from "@/components/quantum/OnboardingTour";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
 import {
   Atom,
@@ -26,6 +28,7 @@ import {
   LogOut,
   Library,
   Menu,
+  Users,
 } from "lucide-react";
 import {
   Sheet,
@@ -198,7 +201,7 @@ export default function Index() {
 
         <Tabs defaultValue="visualizer" className="w-full" onValueChange={handleTabChange}>
           <div className="overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
-            <TabsList className="flex w-full min-w-max md:grid md:grid-cols-5 bg-black/30 border border-white/10">
+            <TabsList className="flex w-full min-w-max md:grid md:grid-cols-6 bg-black/30 border border-white/10">
               <TabsTrigger
                 value="visualizer"
                 className="flex-1 flex items-center gap-2 data-[state=active]:bg-cyan-500/20 data-[state=active]:text-cyan-400 px-4"
@@ -226,6 +229,13 @@ export default function Index() {
               >
                 <Library className="h-4 w-4" />
                 <span className="inline">{t("tabs.library")}</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="community"
+                className="flex-1 flex items-center gap-2 data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-400 px-4"
+              >
+                <Users className="h-4 w-4" />
+                <span className="inline">{t("tabs.community")}</span>
               </TabsTrigger>
               <TabsTrigger
                 value="advanced"
@@ -257,8 +267,13 @@ export default function Index() {
             <TabsContent value="advanced" className="space-y-6">
               <AdvancedOperations />
             </TabsContent>
+
+            <TabsContent value="community" className="space-y-6">
+              <CommunityContent />
+            </TabsContent>
           </div>
         </Tabs>
+        <OnboardingTour />
       </main>
 
       {/* Footer */}

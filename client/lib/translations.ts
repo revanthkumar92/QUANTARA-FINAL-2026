@@ -159,7 +159,32 @@ export type TranslationKey =
     | "advanced.report.summary"
     | "advanced.report.recommendations"
     | "advanced.report.generated"
-    | "advanced.algo.applications";
+    | "advanced.algo.applications"
+    | "tabs.community"
+    | "community.title"
+    | "community.desc"
+    | "community.groups.title"
+    | "community.groups.desc"
+    | "community.group.quantum_research.title"
+    | "community.group.quantum_research.desc"
+    | "community.group.beginners.title"
+    | "community.group.beginners.desc"
+    | "community.group.career.title"
+    | "community.group.career.desc"
+    | "community.join"
+    | "onboarding.welcome.title"
+    | "onboarding.welcome.desc"
+    | "onboarding.visualizer.title"
+    | "onboarding.visualizer.desc"
+    | "onboarding.gates.title"
+    | "onboarding.gates.desc"
+    | "onboarding.education.title"
+    | "onboarding.education.desc"
+    | "onboarding.community.title"
+    | "onboarding.community.desc"
+    | "onboarding.btn.next"
+    | "onboarding.btn.skip"
+    | "onboarding.btn.finish";
 
 export const translations: Record<string, Record<TranslationKey, string>> = {
     en: {
@@ -323,6 +348,31 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "advanced.report.summary": "Execution Summary",
         "advanced.report.recommendations": "Recommendations",
         "advanced.report.generated": "Generated",
+        "tabs.community": "Community",
+        "community.title": "Quantum Community",
+        "community.desc": "Connect with researchers, students, and enthusiasts in the quantum ecosystem.",
+        "community.groups.title": "Connectivity Groups",
+        "community.groups.desc": "Join specialized groups to share knowledge and collaborate.",
+        "community.group.quantum_research.title": "Quantum Research Hub",
+        "community.group.quantum_research.desc": "A dedicated space for professionals and researchers to discuss advanced quantum mechanics and hardware.",
+        "community.group.beginners.title": "Quantum Beginners",
+        "community.group.beginners.desc": "The perfect starting point for students to ask questions and learn basics together.",
+        "community.group.career.title": "Quantum Careers",
+        "community.group.career.desc": "Explore job opportunities, internships, and educational paths in the growing quantum industry.",
+        "community.join": "Join Group",
+        "onboarding.welcome.title": "Welcome to Quantara!",
+        "onboarding.welcome.desc": "We're excited to help you explore the quantum world. Let's take a quick tour of our features.",
+        "onboarding.visualizer.title": "Real-time Visualization",
+        "onboarding.visualizer.desc": "See the quantum state evolve as you apply gates on our interactive Bloch sphere.",
+        "onboarding.gates.title": "Circuit Builder",
+        "onboarding.gates.desc": "Build multi-qubit circuits and see probability distributions in real-time.",
+        "onboarding.education.title": "Learn Quantum",
+        "onboarding.education.desc": "Access structured lessons and quizzes to master quantum concepts.",
+        "onboarding.community.title": "Join the Community",
+        "onboarding.community.desc": "Connect with others and grow together in the quantum ecosystem.",
+        "onboarding.btn.next": "Next",
+        "onboarding.btn.skip": "Skip Tour",
+        "onboarding.btn.finish": "Get Started",
         "advanced.algo.applications": "Applications",
     },
     hi: {
@@ -486,7 +536,32 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "advanced.report.summary": "Execution Summary",
         "advanced.report.recommendations": "Recommendations",
         "advanced.report.generated": "Generated",
-        "advanced.algo.applications": "Applications",
+        "tabs.community": "समुदाय",
+        "community.title": "क्वांटम समुदाय",
+        "community.desc": "क्वांटम पारिस्थितिकी तंत्र में शोधकर्ताओं, छात्रों और उत्साही लोगों से जुड़ें।",
+        "community.groups.title": "कनेक्टिविटी समूह",
+        "community.groups.desc": "ज्ञान साझा करने और सहयोग करने के लिए विशेष समूहों में शामिल हों।",
+        "community.group.quantum_research.title": "क्वांटम रिसर्च हब",
+        "community.group.quantum_research.desc": "उन्नत क्वांटम यांत्रिकी और हार्डवेयर पर चर्चा करने के लिए पेशेवरों और शोधकर्ताओं के लिए एक समर्पित स्थान।",
+        "community.group.beginners.title": "क्वांटम शुरुआती",
+        "community.group.beginners.desc": "छात्रों के लिए सवाल पूछने और एक साथ बुनियादी बातें सीखने का सही शुरुआती बिंदु।",
+        "community.group.career.title": "क्वांटम करियर",
+        "community.group.career.desc": "बढ़ते क्वांटम उद्योग में नौकरी के अवसरों, इंटर्नशिप और शैक्षिक पथों का अन्वेषण करें।",
+        "community.join": "समूह में शामिल हों",
+        "onboarding.welcome.title": "क्वांटारा में आपका स्वागत है!",
+        "onboarding.welcome.desc": "हम क्वांटम दुनिया का पता लगाने में आपकी मदद करने के लिए उत्साहित हैं। आइए हमारी विशेषताओं का एक त्वरित दौरा करें।",
+        "onboarding.visualizer.title": "वास्तविक समय विज़ुअलाइज़ेशन",
+        "onboarding.visualizer.desc": "देखें कि जब आप हमारे इंटरैक्टिव ब्लॉच स्फीयर पर गेट लगाते हैं तो क्वांटम अवस्था कैसे विकसित होती है।",
+        "onboarding.gates.title": "सर्किट बिल्डर",
+        "onboarding.gates.desc": "मल्टी-क्विबिट सर्किट बनाएं और वास्तविक समय में संभाव्यता वितरण देखें।",
+        "onboarding.education.title": "क्वांटम सीखें",
+        "onboarding.education.desc": "क्वांटम अवधारणाओं में महारत हासिल करने के लिए संरचित पाठों और प्रश्नोत्तरों तक पहुंचें।",
+        "onboarding.community.title": "समुदाय में शामिल हों",
+        "onboarding.community.desc": " दूसरों के साथ जुड़ें और क्वांटम पारिस्थितिकी तंत्र में एक साथ बढ़ें।",
+        "onboarding.btn.next": "अगला",
+        "onboarding.btn.skip": "टूर छोड़ें",
+        "onboarding.btn.finish": "शुरू करें",
+        "advanced.algo.applications": "अनुप्रयोग",
     },
     te: {
         "app.title": "క్వాంటారా",
@@ -649,7 +724,32 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "advanced.report.summary": "Execution Summary",
         "advanced.report.recommendations": "Recommendations",
         "advanced.report.generated": "Generated",
-        "advanced.algo.applications": "Applications",
+        "tabs.community": "కమ్యూనిటీ",
+        "community.title": "క్వాంటం కమ్యూనిటీ",
+        "community.desc": "క్వాంటం ప్రపంచంలో పరిశోధకులు, విద్యార్థులు మరియు ఔత్సాహికులతో కనెక్ట్ అవ్వండి.",
+        "community.groups.title": "కనెక్టివిటీ గ్రూపులు",
+        "community.groups.desc": "జ్ఞానాన్ని పంచుకోవడానికి మరియు సహకరించడానికి ప్రత్యేక గ్రూపులలో చేరండి.",
+        "community.group.quantum_research.title": "క్వాంటం రీసెర్చ్ హబ్",
+        "community.group.quantum_research.desc": "క్వాంటం మెకానిక్స్ మరియు హార్డ్‌వేర్ గురించి చర్చించడానికి పరిశోధకుల కోసం ప్రత్యేక స్థలం.",
+        "community.group.beginners.title": "క్వాంటం బిగినర్స్",
+        "community.group.beginners.desc": "విద్యార్థులు ప్రశ్నలు అడగడానికి మరియు ప్రాథమిక విషయాలు నేర్చుకోవడానికి ఉత్తమమైన ప్రదేశం.",
+        "community.group.career.title": "క్వాంటం కెరీర్స్",
+        "community.group.career.desc": "క్వాంటం పరిశ్రమలో ఉద్యೋగ అవకాశాలు మరియు విద్యా మార్గాలను అన్వేషించండి.",
+        "community.join": "గ్రూపులో చేరండి",
+        "onboarding.welcome.title": "క్వాంటారాకు స్వాగతం!",
+        "onboarding.welcome.desc": "క్వాంటం ప్రపంచాన్ని అన్వేషించడంలో మీకు సహాయపడటానికి మేము ఉత్ಸಾహంగా ఉన్నాము. ఒకసారి మా ఫీచర్లను చూద్దాం.",
+        "onboarding.visualizer.title": "రియల్ టైమ్ విజువలైజేషన్",
+        "onboarding.visualizer.desc": "బ్లోచ్ స్పియర్‌పై గేట్‌లను వర్తింపజేస్తున్నప్పుడు క్వాంటం స్థితి ఎలా మారుతుందో చూడండి.",
+        "onboarding.gates.title": "సర్క్యూట్ బిల్డర్",
+        "onboarding.gates.desc": "మల్టీ-క్విబిట్ సర్క్యూట్‌లను రూపొందించండి మరియు ఫలితాలను నిజ సమయంలో చూడండి.",
+        "onboarding.education.title": "క్వాంటం నేర్చుకోండి",
+        "onboarding.education.desc": "క్వాంటం కాన్సెప్ట్‌లను నేర్చుకోవడానికి పాఠాలు మరియు క్విజ్‌లను ఉపయోగించండి.",
+        "onboarding.community.title": "కమ్యూనిటీలో చేరండి",
+        "onboarding.community.desc": "ఇతರುలతో కనెక్ట్ అవ్వండి మరియు క్వాంటం ప్రపంచంలో కలిసి ఎదగండి.",
+        "onboarding.btn.next": "తదుపరి",
+        "onboarding.btn.skip": "టూర్ స్కిప్ చేయండి",
+        "onboarding.btn.finish": "ప్రారంభించండి",
+        "advanced.algo.applications": "అనువర్తనాలు",
     },
     ta: {
         "app.title": "குவாண்டா",
@@ -810,7 +910,32 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "advanced.report.summary": "Execution Summary",
         "advanced.report.recommendations": "Recommendations",
         "advanced.report.generated": "Generated",
-        "advanced.algo.applications": "Applications",
+        "advanced.algo.applications": "பயன்பாடுகள்",
+        "tabs.community": "சமூகம்",
+        "community.title": "குவாண்டம் சமூகம்",
+        "community.desc": "குவாண்டம் சுற்றுச்சூழல் அமைப்பில் ஆராய்ச்சியாளர்கள், மாணவர்கள் மற்றும் ஆர்வலர்களுடன் இணையுங்கள்.",
+        "community.groups.title": "இணைப்பு குழுக்கள்",
+        "community.groups.desc": "அறிவைப் பகிரவும் ஒத்துழைக்கவும் சிறப்பு குழுக்களில் சேரவும்.",
+        "community.group.quantum_research.title": "குவாண்டம் ஆராய்ச்சி மையம்",
+        "community.group.quantum_research.desc": "மேம்பட்ட குவாண்டம் இயக்கவியல் மற்றும் வன்பொருள் பற்றி விவாதிக்க ஆராய்ச்சியாளர்களுக்கான பிரத்யேக இடம்.",
+        "community.group.beginners.title": "குவாண்டம் ஆரம்பநிலையாளர்கள்",
+        "community.group.beginners.desc": "மாணவர்கள் கேள்விகளைக் கேட்கவும் அடிப்படைகளைக் கற்றுக்கொள்ளவும் சிறந்த இடம்.",
+        "community.group.career.title": "குவாண்டம் வேலைவாய்ப்புகள்",
+        "community.group.career.desc": "குவாண்டம் துறையில் வேலை வாய்ப்புகள் மற்றும் கல்வி வழிகளை ஆராயுங்கள்.",
+        "community.join": "குழுவில் சேரவும்",
+        "onboarding.welcome.title": "குவாண்டாவிற்கு வருக!",
+        "onboarding.welcome.desc": "குவாண்டம் உலகத்தை ஆராய உங்களுக்கு உதவ நாங்கள் ஆர்வமாக உள்ளோம். எங்கள் அம்சங்களை ஒருமுறை பார்ப்போம்.",
+        "onboarding.visualizer.title": "நிகழ்நேர காட்சிப்படுத்தல்",
+        "onboarding.visualizer.desc": "புளோச் கோளத்தில் மாற்றங்களை நிகழ்நேரத்தில் காணுங்கள்.",
+        "onboarding.gates.title": "சுற்று உருவாக்குநர்",
+        "onboarding.gates.desc": "குவாண்டம் சுற்றுகளை உருவாக்கி முடிவுகளை நிகழ்நேரத்தில் பாருங்கள்.",
+        "onboarding.education.title": "குவாண்டம் கற்க",
+        "onboarding.education.desc": "குவாண்டம் கருத்துக்களைக் கற்க பாடங்கள் மற்றும் வினாடி வினாக்களைப் பயன்படுத்தவும்.",
+        "onboarding.community.title": "சமூகத்தில் இணையுங்கள்",
+        "onboarding.community.desc": "மற்றவர்களுடன் இணைந்து குவாண்டம் உலகில் வளருங்கள்.",
+        "onboarding.btn.next": "அடுத்து",
+        "onboarding.btn.skip": "தவிர்க்க",
+        "onboarding.btn.finish": "தொடங்கவும்",
         "advanced.controls.show": "காட்சிப்படுத்தல்களைக் காண்பி",
         "advanced.controls.hide": "காட்சிப்படுத்தல்களை மறை",
     },
@@ -972,7 +1097,32 @@ export const translations: Record<string, Record<TranslationKey, string>> = {
         "advanced.report.summary": "Execution Summary",
         "advanced.report.recommendations": "Recommendations",
         "advanced.report.generated": "Generated",
-        "advanced.algo.applications": "Applications",
+        "advanced.algo.applications": "ಅನ್ವಯಗಳು",
+        "tabs.community": "ಸಮುದಾಯ",
+        "community.title": "ಕ್ವಾಂಟಮ್ ಸಮುದಾಯ",
+        "community.desc": "ಕ್ವಾಂಟಮ್ ಪರಿಸರ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ ಸಂಶೋಧಕರು, ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಉತ್ಸಾಹಿಗಳೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ.",
+        "community.groups.title": "ಸಂಪರ್ಕ ಗುಂಪುಗಳು",
+        "community.groups.desc": "ಜ್ಞಾನವನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಮತ್ತು ಸಹಕರಿಸಲು ವಿಶೇಷ ಗುಂಪುಗಳಿಗೆ ಸೇರಿ.",
+        "community.group.quantum_research.title": "ಕ್ವಾಂಟಮ್ ಸಂಶೋಧನಾ ಕೇಂದ್ರ",
+        "community.group.quantum_research.desc": "ಸುಧಾರಿತ ಕ್ವಾಂಟಮ್ ಮೆಕ್ಯಾನಿಕ್ಸ್ ಮತ್ತು ಹಾರ್ಡ್‌ವೇರ್ ಬಗ್ಗೆ ಚರ್ಚಿಸಲು ಸಂಶೋಧಕರಿಗಾಗಿ ಮೀಸಲಾದ ಸ್ಥಳ.",
+        "community.group.beginners.title": "ಕ್ವಾಂಟಮ್ ಆರಂಭಿಕರು",
+        "community.group.beginners.desc": "ವಿದ್ಯಾರ್ಥಿಗಳು ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಲು ಮತ್ತು ಮೂಲಭೂತ ವಿಷಯಗಳನ್ನು ಕಲಿಯಲು ಉತ್ತಮ ಸ್ಥಳ.",
+        "community.group.career.title": "ಕ್ವಾಂಟಮ್ ವೃತ್ತಿಜೀವನ",
+        "community.group.career.desc": "ಬೆಳೆಯುತ್ತಿರುವ ಕ್ವಾಂಟಮ್ ಉದ್ಯಮದಲ್ಲಿ ಉದ್ಯೋಗಾವಕಾಶಗಳು ಮತ್ತು ಶೈಕ್ಷಣಿಕ ಮಾರ್ಗಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
+        "community.join": "ಗುಂಪಿಗೆ ಸೇರಿ",
+        "onboarding.welcome.title": "ಕ್ವಾಂಟಾರಾಕ್ಕೆ ಸ್ವಾಗತ!",
+        "onboarding.welcome.desc": "ಕ್ವಾಂಟಮ್ ಜಗತ್ತನ್ನು ಅನ್ವೇಷಿಸಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು ನಾವು ಉತ್ಸುಕರಾಗಿದ್ದೇವೆ. ನಮ್ಮ ವೈಶಿಷ್ಟ್ಯಗಳ ಒಂದು ಪ್ರವಾಸ ಮಾಡೋಣ.",
+        "onboarding.visualizer.title": "ನೈಜ-ಸಮಯದ ದೃಶ್ಯೀಕರಣ",
+        "onboarding.visualizer.desc": "ಬ್ಲಾಚ್ ಗೋಳದ ಮೇಲೆ ಬದಲಾವಣೆಗಳನ್ನು ನೈಜ ಸಮಯದಲ್ಲಿ ವೀಕ್ಷಿಸಿ.",
+        "onboarding.gates.title": "ಸರ್ಕ್ಯೂಟ್ ಬಿಲ್ಡರ್",
+        "onboarding.gates.desc": "ಕ್ವಾಂಟಮ್ ಸರ್ಕ್ಯೂಟ್‌ಗಳನ್ನು ನಿರ್ಮಿಸಿ ಮತ್ತು ಫಲಿತಾಂಶಗಳನ್ನು ನೈಜ ಸಮಯದಲ್ಲಿ ನೋಡಿ.",
+        "onboarding.education.title": "ಕ್ವಾಂಟಮ್ ಕಲಿಯಿರಿ",
+        "onboarding.education.desc": "ಕ್ವಾಂಟಮ್ ಪರಿಕಲ್ಪನೆಗಳನ್ನು ಕಲಿಯಲು ಪಾಠಗಳು ಮತ್ತು ರಸಪ್ರಶ್ನೆಗಳನ್ನು ಬಳಸಿ.",
+        "onboarding.community.title": "ಸಮುದಾಯಕ್ಕೆ ಸೇರಿ",
+        "onboarding.community.desc": "ಇತರರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ ಮತ್ತು ಕ್ವಾಂಟಮ್ ಜಗತ್ತಿನಲ್ಲಿ ಒಟ್ಟಾಗಿ ಬೆಳೆಯಿರಿ.",
+        "onboarding.btn.next": "ಮುಂದೆ",
+        "onboarding.btn.skip": "ಬಿಟ್ಟುಬಿಡಿ",
+        "onboarding.btn.finish": "ಪ್ರಾರಂಭಿಸಿ",
         "library.title": "ಕ್ವಾಂಟಮ್ ಗ್ರಂಥಾಲಯ",
         "library.desc": "ಕ್ವಾಂಟಮ್ ಕಂಪ್ಯೂಟಿಂಗ್ ಮತ್ತು ಭೌತಶಾಸ್ತ್ರದ ಬಗೆಗಿನ ಅಗತ್ಯ ಓದುವ ಸಾಮಗ್ರಿಗಳು ಮತ್ತು ಪುಸ್ತಕಗಳನ್ನು ಅನ್ವೇಷಿಸಿ.",
         "library.viewBook": "ಪುಸ್ತಕವನ್ನು ನೋಡಿ"
