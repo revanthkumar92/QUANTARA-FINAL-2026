@@ -11,23 +11,63 @@ interface Message {
     content: string;
 }
 
-const KNOWLEDGE_BASE: Record<string, string> = {
-    "hello": "Hello! I am your Quantum Assistant. I can help you understand quantum concepts like superposition, entanglement, and quantum gates.",
-    "qubit": "A qubit (quantum bit) is the basic unit of quantum information. Unlike a classical bit, it can exist in a superposition of states |0⟩ and |1⟩.",
-    "superposition": "Superposition is a fundamental principle of quantum mechanics where a system can exist in multiple states at once until measured.",
-    "entanglement": "Entanglement is a phenomenon where particles become connected such that the state of one instantly influences the other, even at a distance.",
-    "gate": "Quantum gates are the building blocks of quantum circuits, representing unitary transformations on qubits.",
-    "hadamard": "The Hadamard gate (H) creates superposition, transforming |0⟩ into a state where 0 and 1 are equally likely.",
-    "bloch sphere": "The Bloch sphere is a 3D geometrical representation of a qubit's state space.",
-    "shor": "Shor's algorithm efficiently factors large integers, posing a threat to classical RSA encryption.",
-    "grover": "Grover's algorithm provides a quadratic speedup for searching unstructured databases.",
-    "teleportation": "Quantum teleportation is a process by which quantum information can be transmitted from one location to another using entanglement.",
-    "interference": "Quantum interference relates to the probability amplitudes of quantum states combining to reinforce or cancel each other.",
-    "measurement": "Measurement collapses a quantum state from a superposition into one of the basis states (|0⟩ or |1⟩).",
-    "bell": "Bell states are specific highly entangled quantum states of two qubits.",
+const QUANTUM_KNOWLEDGE_BASE: Record<string, string> = {
+    // Real-world Applications of Quantum State Visualizer
+    "visualizer": "A Quantum State Visualizer helps us see how qubits evolve. It's used for:\n• Education & Training - visualizing probability amplitudes\n• Debugging Quantum Circuits - testing algorithms before running on real hardware\n• Algorithm Development - designing QFT, Grover's Search, Shor's Factoring\n• Industry Optimization - pharma (molecules), finance (portfolios), material science (electron states)",
+
+    // Quantum Circuits
+    "circuit": "Quantum circuits are the core framework for quantum computing. They provide step-by-step qubit transformations using quantum gates. Just like classical computers use logic circuits, quantum computers use quantum circuits to design and run algorithms. Any complex algorithm like Shor's is broken into smaller circuit operations.",
+
+    // Quantum Gates - Enhanced
+    "gate": "Quantum gates are the building blocks of quantum circuits. Key gates include:\n• Hadamard (H) - creates superposition\n• Pauli-X - quantum NOT gate\n• CNOT - creates entanglement\n• Toffoli - quantum AND gate\n\nThey enable cryptography, drug discovery, optimization, and quantum ML.",
+
+    // Original knowledge base entries
+    "hello": "Hello! I'm Quantara, your Quantum Assistant. I can help you understand quantum mechanics, superposition, entanglement, quantum gates, and real-world applications!",
+    "qubit": "A qubit (quantum bit) is the basic unit of quantum information. Unlike a classical bit, it can exist in a superposition of states |0⟩ and |1⟩ simultaneously.",
+    "superposition": "Superposition is a fundamental principle where a quantum system exists in multiple states at once until measured. The Hadamard gate creates superposition, allowing quantum computers to explore many solutions simultaneously - this is why Grover's algorithm can search √N times faster!",
+    "entanglement": "Entanglement is when particles become connected so the state of one instantly influences the other, even at a distance. CNOT and controlled gates create entanglement, which is essential for Quantum Key Distribution (QKD) for unbreakable encryption.",
+    "hadamard": "The Hadamard gate (H) creates superposition, transforming |0⟩ into a state where 0 and 1 are equally likely. This enables quantum parallelism - the ability to explore many possible solutions at once!",
+    "bloch sphere": "The Bloch sphere is a 3D geometrical representation of a qubit's state space. It helps visualize quantum states and transformations.",
+    "shor": "Shor's algorithm efficiently factors large integers, posing a threat to classical RSA encryption. It's a prime example of quantum advantage in cryptography.",
+    "grover": "Grover's algorithm provides a quadratic speedup for searching unstructured databases - √N times faster than classical methods!",
+    "teleportation": "Quantum teleportation transmits quantum information from one location to another using entanglement - without physically moving the particle!",
+    "interference": "Quantum interference occurs when probability amplitudes combine to reinforce or cancel each other, enabling quantum algorithms to amplify correct answers.",
+    "measurement": "Measurement collapses a quantum state from superposition into one of the basis states (|0⟩ or |1⟩). This is irreversible!",
+    "bell": "Bell states are specific highly entangled quantum states of two qubits, fundamental to quantum communication and teleportation.",
     "qiskit": "Qiskit is an open-source SDK for working with quantum computers at the level of circuits, pulses, and algorithms.",
-    "default": "That's an interesting question! I can help you with quantum computing concepts. Try asking me about qubits, superposition, entanglement, quantum gates, or check out our 'Education' tab for interactive learning!"
+    "application": "Quantum computing applications include:\n• Cryptography - breaking RSA & creating secure encryption\n• Drug Discovery - simulating molecular interactions\n• Optimization - logistics, finance, traffic management\n• AI/ML - quantum machine learning for faster classification",
+    "cnot": "CNOT (Controlled-NOT) is a two-qubit gate that creates entanglement. It flips the target qubit only if the control qubit is |1⟩.",
+    "pauli": "Pauli gates (X, Y, Z) are fundamental single-qubit gates. Pauli-X is like a classical NOT gate, flipping |0⟩↔|1⟩.",
+    "toffoli": "The Toffoli gate is a three-qubit gate (also called CCNOT). It's universal for classical computation and important for quantum error correction.",
+    "reversible": "Quantum gates are reversible, unlike classical logic gates. This reversibility is essential for simulating physical systems like molecules and materials.",
+    "default": "That's an interesting question! I can help you with quantum computing concepts. Try asking me about qubits, superposition, entanglement, quantum gates, circuits, visualizers, or real-world applications!"
 };
+
+function findBestMatch(input: string): string {
+    const normalizedInput = input.toLowerCase();
+
+    // Check for exact or partial matches
+    for (const [key, value] of Object.entries(QUANTUM_KNOWLEDGE_BASE)) {
+        if (key !== "default" && normalizedInput.includes(key)) {
+            return value;
+        }
+    }
+
+    // Check for related terms
+    if (normalizedInput.includes("why") && normalizedInput.includes("circuit")) {
+        return QUANTUM_KNOWLEDGE_BASE.circuit;
+    }
+    if (normalizedInput.includes("real") || normalizedInput.includes("world") || normalizedInput.includes("use")) {
+        if (normalizedInput.includes("visualiz")) return QUANTUM_KNOWLEDGE_BASE.visualizer;
+        if (normalizedInput.includes("gate")) return QUANTUM_KNOWLEDGE_BASE.gate;
+        return QUANTUM_KNOWLEDGE_BASE.application;
+    }
+    if (normalizedInput.includes("what") && (normalizedInput.includes("gate") || normalizedInput.includes("important"))) {
+        return QUANTUM_KNOWLEDGE_BASE.gate;
+    }
+
+    return QUANTUM_KNOWLEDGE_BASE.default;
+}
 
 export function QuantumChatbot() {
     const { t } = useLanguage();
@@ -77,16 +117,10 @@ export function QuantumChatbot() {
             });
 
             if (!response.ok) {
-                // Fallback to local knowledge base if API fails
-                const normalizedInput = userMessage.toLowerCase();
-                let localResponse = KNOWLEDGE_BASE.default;
-                for (const key in KNOWLEDGE_BASE) {
-                    if (normalizedInput.includes(key) && key !== "default") {
-                        localResponse = KNOWLEDGE_BASE[key];
-                        break;
-                    }
-                }
+                // Fallback to enhanced local knowledge base if API fails
+                const localResponse = findBestMatch(userMessage);
                 setMessages(prev => [...prev, { role: "bot", content: localResponse }]);
+
             } else {
                 const data = await response.json();
                 setMessages(prev => [...prev, { role: "bot", content: data.text }]);
