@@ -26,7 +26,7 @@ const KNOWLEDGE_BASE: Record<string, string> = {
     "measurement": "Measurement collapses a quantum state from a superposition into one of the basis states (|0⟩ or |1⟩).",
     "bell": "Bell states are specific highly entangled quantum states of two qubits.",
     "qiskit": "Qiskit is an open-source SDK for working with quantum computers at the level of circuits, pulses, and algorithms.",
-    "default": "That's an interesting question! I'm currently set to fallback mode. Please ensure the GEMINI_API_KEY is configured in the .env file for full AI capabilities. In the meantime, I recommend checking out our 'Education' tab!"
+    "default": "That's an interesting question! I can help you with quantum computing concepts. Try asking me about qubits, superposition, entanglement, quantum gates, or check out our 'Education' tab for interactive learning!"
 };
 
 export function QuantumChatbot() {
